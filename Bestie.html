@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg:#1a0b14;
+  --card:#2a0f1f;
+  --accent:#ff5fa2;
+  --accent-soft:#ff8fc4;
+  --text:#ffe6f2;
+  --muted:#ffb3d9;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top, #3a0f27, var(--bg));
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  padding:30px 15px;
+}
+
+.container{
+  width:100%;
+  max-width:900px;
+}
+
+header{
+  margin-bottom:30px;
+}
+
+h1{
+  margin:0;
+  font-size:2.2rem;
+  text-align:center;
+  color:var(--accent);
+}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+.tool-card{
+  background:linear-gradient(145deg, var(--card), #3a1230);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 25px 55px rgba(0,0,0,.55);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform .2s, box-shadow .2s;
+}
+
+.tool-card:hover{
+  transform:translateY(-5px) scale(1.01);
+  box-shadow:0 35px 75px rgba(255,95,162,.25);
+}
+
+.tool-title{
+  font-size:1.35rem;
+  margin-bottom:10px;
+  color:#ffd1e8;
+}
+
+.tool-link{
+  font-size:.85rem;
+  color:var(--muted);
+  word-break:break-all;
+}
+
+.open-btn{
+  margin-top:22px;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+  color:#1a0010;
+  font-weight:700;
+  font-size:1rem;
+  cursor:pointer;
+  transition:transform .15s, box-shadow .15s;
+}
+
+.open-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(255,95,162,.45);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <h1>🩷 My Tools</h1>
+</header>
+
+<div class="tools-grid" id="toolsGrid"></div>
+
+</div>
+
+<script>
+const tools = [
+  {
+    name:"Precise Location Finder",
+    link:"https://rahulpuri.fun/Tools/LocationFinder"
+  }
+];
+
+function renderTools(){
+  const grid = document.getElementById("toolsGrid");
+  grid.innerHTML = "";
+
+  tools.forEach(tool=>{
+    const card = document.createElement("div");
+    card.className = "tool-card";
+
+    card.innerHTML = `
+      <div>
+        <div class="tool-title">${tool.name}</div>
+        <div class="tool-link">${tool.link}</div>
+      </div>
+      <button class="open-btn" onclick="window.open('${tool.link}','_blank')">
+        Open
+      </button>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+renderTools();
+</script>
+
+</body>
+</html>    
